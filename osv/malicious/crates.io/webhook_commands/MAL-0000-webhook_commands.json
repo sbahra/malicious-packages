@@ -1,0 +1,59 @@
+{
+  "modified": "2026-11-07T22:48:10Z",
+  "published": "2026-11-07T22:48:10Z",
+  "schema_version": "1.7.4",
+  "details": "webhook_commands is a binary crate on crates.io with no description beyond \"testby detox56\". Running its binary (`cargo install webhook_commands`, then `webhook_commands`) executes `id`, `whoami`, `pwd` and `ls` on the host (`src/main.rs` lines 40-56), collects their output, and POSTs it as JSON (`{\"data\": ...}`) to `https://fhrjhguyyllrimdlhcul6vo1e7p75g96l.oast.fun/endpoint` (`src/main.rs` lines 15-25 and 38), an Interactsh out-of-band interaction endpoint, so the account, groups, working directory and directory listing of whoever runs it reach whoever registered that endpoint. The crate has no build script and nothing runs at build time.\n\n0.1.0, its only version, was published on 2026-02-13 by the crates.io account nodetester321 and is still served, almost nine months later.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "webhook_commands"
+      },
+      "versions": [
+        "0.1.0"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "REPORT",
+      "url": "https://registry.bitbison.io/cargo/webhook_commands"
+    },
+    {
+      "type": "PACKAGE",
+      "url": "https://crates.io/crates/webhook_commands"
+    }
+  ],
+  "credits": [
+    {
+      "name": "Bitbison",
+      "contact": [
+        "https://bitbison.io",
+        "https://registry.bitbison.io"
+      ],
+      "type": "FINDER"
+    }
+  ],
+  "database_specific": {
+    "iocs": {
+      "urls": [
+        "https://fhrjhguyyllrimdlhcul6vo1e7p75g96l.oast.fun/endpoint"
+      ],
+      "domains": [
+        "fhrjhguyyllrimdlhcul6vo1e7p75g96l.oast.fun"
+      ],
+      "files": [
+        {
+          "paths": [
+            "src/main.rs"
+          ],
+          "source": "PACKAGE_ARCHIVE",
+          "note": "0.1.0: runs id, whoami, pwd and ls and POSTs their output to the oast.fun endpoint",
+          "digests": {
+            "sha256": "62178840e78df0a8e786205d761c183934c8b9f9d8b63375460bf6f56f67b00b"
+          }
+        }
+      ]
+    }
+  }
+}
