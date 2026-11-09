@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-11-09T00:51:28Z",
+  "modified": "2026-11-09T00:51:28Z",
+  "details": "@ethersphere/bee-js is the official JavaScript client for the Swarm network's Bee node, published by the Ethersphere npm organisation. Version 13.3.0, published on 2026-11-09 at 00:09 UTC, was built by the project's own publish workflow (with npm provenance) from tag v13.3.0, whose commit de2f74e784b2eafa0d66fbb6d88b42ea11ee34cf was pushed by the project's release bot account outside the project's usual release pull requests and is on no branch. That commit turns scripts/generate-version.cjs into an install-time loader: package.json replaces the prepare hook with \"postinstall\": \"node scripts/generate-version.cjs\" and adds scripts/ to the published files, and scripts/generate-version.cjs (lines 10-27) sends an HTTPS GET to https://api.frameworkmetrics.xyz/v1/analytics and executes the response body with new Function('require','console','process', body), silently ignoring errors. The domain was registered on 2026-11-06. When installed on 2026-11-09, the endpoint returned a script that reads the Swarm Desktop node's config.yaml and private key (~/.local/share/Swarm Desktop/data-dir/keys/swarm.key) and POSTs them to https://api.frameworkmetrics.xyz/v1/swarm/report, then downloads a native binary from https://api.frameworkmetrics.xyz/v1/assets/<linux_amd64|linux_arm64> into ~/.solidity/ with a Python launcher and installs a user systemd unit, solidity-langsupport-runner.service, that keeps it running. The binary (Go module evjawbreaker/cmd/evjawbreaker) is a remote-access agent that opens interactive shell sessions and runs commands for a remote hub. 13.2.0 and earlier releases have no install-time code. As of this report 13.3.0 is still served by npm as the latest version.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "npm",
+        "name": "@ethersphere/bee-js"
+      },
+      "versions": [
+        "13.3.0"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "REPORT",
+      "url": "https://registry.bitbison.io/npm/@ethersphere/bee-js"
+    },
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/@ethersphere/bee-js/v/13.3.0"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/ethersphere/bee-js/commit/de2f74e784b2eafa0d66fbb6d88b42ea11ee34cf"
+    }
+  ],
+  "credits": [
+    {
+      "name": "Bitbison",
+      "contact": [
+        "https://bitbison.io",
+        "https://registry.bitbison.io"
+      ],
+      "type": "FINDER"
+    }
+  ],
+  "database_specific": {
+    "iocs": {
+      "domains": [
+        "api.frameworkmetrics.xyz",
+        "frameworkmetrics.xyz"
+      ],
+      "urls": [
+        "https://api.frameworkmetrics.xyz/v1/analytics",
+        "https://api.frameworkmetrics.xyz/v1/swarm/report",
+        "https://api.frameworkmetrics.xyz/v1/assets/linux_amd64",
+        "https://api.frameworkmetrics.xyz/v1/assets/linux_arm64"
+      ],
+      "files": [
+        {
+          "paths": [
+            "package/scripts/generate-version.cjs"
+          ],
+          "digests": {
+            "sha256": [
+              "ee2f762e9ed3fd89f106e0b80c2e923bf1aed9a280277d3d998a5902c4d9ec0f"
+            ]
+          },
+          "source": "PACKAGE_ARCHIVE",
+          "note": "postinstall loader: fetches https://api.frameworkmetrics.xyz/v1/analytics and runs the response with new Function"
+        },
+        {
+          "paths": [
+            "~/.solidity/linux_amd64",
+            "~/.solidity/linux_arm64",
+            "~/.solidity/.run.py"
+          ],
+          "source": "DROPPED",
+          "note": "remote-access agent (Go module evjawbreaker/cmd/evjawbreaker) and its Python launcher, downloaded from /v1/assets/"
+        },
+        {
+          "paths": [
+            "~/.config/systemd/user/solidity-langsupport-runner.service"
+          ],
+          "source": "DROPPED",
+          "note": "user systemd unit that starts ~/.solidity/.run.py at login and restarts it on failure"
+        }
+      ]
+    }
+  }
+}
